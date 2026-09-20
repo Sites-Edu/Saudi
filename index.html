@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#002628" />
+  <meta name="description" content="بطاقات اليوم الوطني السعودي - أنشئ بطاقتك في ثوانٍ" />
+  <title>بطاقات اليوم الوطني السعودي</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="pattern pattern-top"></div>
+      <div class="hero-inner">
+        <img class="ministry-logo" src="assets/ministry-logo.png" alt="وزارة التعليم" />
+        <img class="national-logo" src="assets/national-day-logo.jpeg" alt="اليوم الوطني السعودي" />
+        <h1>بطاقات اليوم الوطني السعودي</h1>
+        <div class="title-rule"><span></span><b>✦</b><span></span></div>
+        <p>أنشئ بطاقتك في ثوانٍ</p>
+      </div>
+      <div class="hero-bottom-pattern"></div>
+    </header>
+
+    <main class="main-content">
+      <section class="steps" aria-label="إنشاء البطاقة">
+        <article class="step-card">
+          <div class="step-number">١</div>
+          <div class="step-body">
+            <div class="step-title"><span class="step-icon">♙</span><h2>ادخل الاسم</h2></div>
+            <input id="nameInput" type="text" maxlength="40" autocomplete="name" placeholder="اكتب اسمك هنا ..." />
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">٢</div>
+          <div class="step-body">
+            <div class="step-title"><span class="step-icon">✎</span><h2>سطر كلماتك للوطن</h2></div>
+            <textarea id="messageInput" maxlength="110" rows="3" placeholder="اكتب رسالتك هنا ..."></textarea>
+            <div class="char-count"><span id="charCount">٠</span> / ١١٠</div>
+          </div>
+        </article>
+
+        <article class="step-card design-step">
+          <div class="step-number">٣</div>
+          <div class="step-body">
+            <div class="step-title"><span class="step-icon">▧</span><h2>اختر تصميم</h2></div>
+            <div id="designGrid" class="design-grid" aria-label="التصاميم"></div>
+          </div>
+        </article>
+
+        <button id="createBtn" class="create-btn" type="button">
+          <span>✦</span> إنشاء البطاقة
+        </button>
+      </section>
+
+      <section id="previewSection" class="preview-section" hidden>
+        <div class="preview-heading">
+          <span class="preview-eye">◉</span>
+          <div>
+            <h2>معاينة البطاقة</h2>
+            <p>ستظهر بطاقتك هنا بعد الإنشاء</p>
+          </div>
+        </div>
+
+        <div class="preview-layout">
+          <div class="card-preview-wrap">
+            <canvas id="previewCanvas" aria-label="معاينة البطاقة"></canvas>
+          </div>
+          <div class="actions">
+            <button id="shareBtn" class="action-btn share" type="button"><span>↗</span> مشاركة</button>
+            <button id="downloadBtn" class="action-btn download" type="button"><span>↓</span> تحميل</button>
+            <button id="newCardBtn" class="action-btn new" type="button"><span>↻</span> بطاقة جديدة</button>
+          </div>
+        </div>
+
+        <div class="text-controls" id="textControls" hidden>
+          <div class="controls-heading">
+            <span>✦</span>
+            <div><h3>تحكم بسيط بالنص</h3><p>اسحب الكلام مباشرة على البطاقة أو استخدم الأزرار.</p></div>
+          </div>
+          <div class="control-mode">
+            <button type="button" class="move-mode active" data-target="message">تحريك الكلمات</button>
+            <button type="button" class="move-mode" data-target="name">تحريك الاسم</button>
+          </div>
+          <div class="control-row">
+            <div class="control-box">
+              <div class="control-label"><span>حجم الكلمات</span><output id="messageSizeValue">١٠٠</output></div>
+              <input id="messageSize" type="range" min="45" max="180" value="100" step="1" />
+            </div>
+            <div class="control-box">
+              <div class="control-label"><span>حجم الاسم</span><output id="nameSizeValue">٦٠</output></div>
+              <input id="nameSize" type="range" min="28" max="120" value="60" step="1" />
+            </div>
+          </div>
+          <div class="control-row">
+            <div class="control-box">
+              <div class="control-label"><span>يمين / يسار الكلمات</span><output id="messageXValue">٥٠٪</output></div>
+              <input id="messageX" type="range" min="5" max="95" value="50" step="1" />
+            </div>
+            <div class="control-box">
+              <div class="control-label"><span>أعلى / أسفل الكلمات</span><output id="messageYValue">٦٤٪</output></div>
+              <input id="messageY" type="range" min="15" max="88" value="64" step="1" />
+            </div>
+          </div>
+          <div class="control-row">
+            <div class="control-box">
+              <div class="control-label"><span>يمين / يسار الاسم</span><output id="nameXValue">٥٠٪</output></div>
+              <input id="nameX" type="range" min="5" max="95" value="50" step="1" />
+            </div>
+            <div class="control-box">
+              <div class="control-label"><span>أعلى / أسفل الاسم</span><output id="nameYValue">٧٨٪</output></div>
+              <input id="nameY" type="range" min="20" max="95" value="78" step="1" />
+            </div>
+          </div>
+          <button id="resetTextBtn" class="reset-text" type="button">↻ إعادة المواضع الافتراضية</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="counter">عدد مرات إنشاء البطاقات: <strong id="creationCount">٠</strong></div>
+      <div class="footer-pattern"></div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
